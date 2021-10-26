@@ -3,64 +3,77 @@ class TicTacToe:
     player = None
     x = None
     y = None
-    count={'x':0,'o':0}
     state = "start"
+
     def __init__(self):
-        self.board = [['.' for _ in range(3)]for _ in range(3)]
+        self.board = [['.' for _ in range(3)] for _ in range(3)]
         self.player = 1
-    
+
     def display(self):
         for row in self.board:
             print(''.join(row))
 
     def check(self):
+        sign = 'x' if self.player == 1 else 'o'
+        count = 0
         for i in range(3):
-            if(self.board[self.x][i] != '.'):
-                self.count[self.board[self.x][i]] += 1
-        if 3 in self.count.values():
-            print(list(self.count.keys())[list(self.count.values()).index(3)]+' win the game')
-            self.state = "end"
+            if self.board[self.x][i] == sign:
+                count += 1
+        if count == 3:
+            print(sign + ' win the game')
+            self.state = 'end'
             return
-        self.resetCount()
+        count = 0
         for j in range(3):
-            if(self.board[j][self.y] != '.'):
-               self.count[self.board[j][self.y]] += 1
-        if 3 in self.count.values():
-            print(list(self.count.keys())[list(self.count.values()).index(3)]+' win the game')
+            if self.board[j][self.y] == sign:
+                count += 1
+        if count == 3:
+            print(sign + ' win the game')
             self.state = "end"
             return
-        self.resetCount()
+        count = 0
         for k in range(3):
-            if (self.board[k][k] != '.'):
-                self.count[self.board[k][k]] += 1
-        if 3 in self.count.values():
-            print(list(self.count.keys())[list(self.count.values()).index(3)]+' win the game')
+            if self.board[k][k] == sign:
+                count += 1
+        if count == 3:
+            print(sign + ' win the game')
             self.state = "end"
             return
-        self.resetCount()
+        count = 0
         for k in range(3):
-            if (self.board[k][3-k-1] != '.'):
-                self.count[self.board[k][3-k-1]] += 1
-        if 3 in self.count.values():
-            print(list(self.count.keys())[list(self.count.values()).index(3)]+' win the game')
+            if self.board[k][3 - k - 1] == sign:
+                count += 1
+        if count == 3:
+            print(sign + ' win the game')
             self.state = "end"
+            return
+        if not any('.' in rows for rows in self.board):
+            print("it's a draw")
+            self.state = 'draw'
             return
 
+    def empty_case(self):
+        if self.board[self.x][self.y] == '.':
+            return True
+        return False
 
     def move(self):
-        self.x = int(input("Choose a column : "))-1
-        self.y = int (input("Choose a row : "))-1
+        self.x = int(input("Choose a column : ")) - 1
+        self.y = int(input("Choose a row : ")) - 1
+        while not self.empty_case():
+            print('Invalid column !')
+            self.x = int(input("Choose a column : ")) - 1
+            self.y = int(input("Choose a row : ")) - 1
+
         if self.player == 1:
-            self.board[self.x][self.y]='x'
-        else :
-            self.board[self.x][self.y]='o'
-        self.player = (self.player + 1)%2
+            self.board[self.x][self.y] = 'x'
+        else:
+            self.board[self.x][self.y] = 'o'
+
         self.display()
         self.check()
+        self.player = (self.player + 1) % 2
 
-    def resetCount(self):
-        self.count['x']=0
-        self.count['o']=0
 
 game = TicTacToe()
 game.display()
