@@ -3,7 +3,7 @@ class TicTacToe:
     player = None
     x = None
     y = None
-    state = "start"
+    state = 'start'
 
     def __init__(self):
         self.board = [['.' for _ in range(3)] for _ in range(3)]
@@ -29,7 +29,7 @@ class TicTacToe:
                 count += 1
         if count == 3:
             print(sign + ' win the game')
-            self.state = "end"
+            self.state = 'end'
             return
         count = 0
         for k in range(3):
@@ -37,7 +37,7 @@ class TicTacToe:
                 count += 1
         if count == 3:
             print(sign + ' win the game')
-            self.state = "end"
+            self.state = 'end'
             return
         count = 0
         for k in range(3):
@@ -45,10 +45,10 @@ class TicTacToe:
                 count += 1
         if count == 3:
             print(sign + ' win the game')
-            self.state = "end"
+            self.state = 'end'
             return
         if not any('.' in rows for rows in self.board):
-            print("it's a draw")
+            print('it\'s a draw')
             self.state = 'draw'
             return
 
@@ -58,12 +58,12 @@ class TicTacToe:
         return False
 
     def move(self):
-        self.x = int(input("Choose a column : ")) - 1
-        self.y = int(input("Choose a row : ")) - 1
+        self.x = int(input('Choose a column : ')) - 1
+        self.y = int(input('Choose a row : ')) - 1
         while not self.empty_case():
             print('Invalid column !')
-            self.x = int(input("Choose a column : ")) - 1
-            self.y = int(input("Choose a row : ")) - 1
+            self.x = int(input('Choose a column : ')) - 1
+            self.y = int(input('Choose a row : ')) - 1
 
         if self.player == 1:
             self.board[self.x][self.y] = 'x'
@@ -77,6 +77,6 @@ class TicTacToe:
 
 game = TicTacToe()
 game.display()
-while game.state == "start":
+while game.state == 'start':
     game.move()
-print("end")
+print('end')
