@@ -75,8 +75,11 @@ class TicTacToe:
         self.player = (self.player + 1) % 2
 
 
-game = TicTacToe()
-game.display()
-while game.state == 'start':
-    game.move()
-print('end')
+
+
+if __name__ == '__main__':
+    game = TicTacToe()
+    game.display()
+    while game.state == 'start':
+        game.move()
+    print('end')
