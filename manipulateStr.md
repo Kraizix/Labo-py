@@ -171,7 +171,7 @@ print(MajMin("If you're not the most gifted, be the one who works the most ", 10
 
 Sortie :
 
-ViVe le VeNt d'hiVer
+ViVe lE VeNt d'hiVer
 HELLO WORLD
 The number is over than the length of the string
 If you're Not the moSt gifted Be the oNe who workS the moSt 
